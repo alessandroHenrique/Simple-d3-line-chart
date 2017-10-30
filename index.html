@@ -20,5 +20,10 @@ var svg = d3.select("svg"),
       data.date = parseTime(data.date);
       data.close = +data.close;
       return data;
-    })
+    }, function (error, data) {
+      if (error) throw error;
+
+      x.domain(d3.extent(data, function(d) { return d.date; }));
+      y.domain(d3.extent(data, function(d) { return d.close; }));
+    });
 </script>
