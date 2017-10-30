@@ -13,4 +13,12 @@ var svg = d3.select("svg"),
 
     var y = d3.scaleLinear()
         .rangeRound([height, 0]);
+
+    var parseTime = d3.timeParse("%d-%b-%y");
+
+    d3.tsv("data.tsv", function (data) {
+      data.date = parseTime(data.date);
+      data.close = +data.close;
+      return data;
+    })
 </script>
